@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3  # Updated to latest version
 
       - name: Get Date
         id: get-date
@@ -17,13 +17,13 @@ jobs:
         shell: bash
 
       - name: Cache Buildozer global directory
-        uses: actions/cache@v2
+        uses: actions/cache@v3  # Updated to latest version
         with:
           path: ~/.buildozer
           key: buildozer-global-${{ hashFiles('buildozer.spec') }}
 
       - name: Cache Buildozer dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3  # Updated to latest version
         with:
           path: .buildozer
           key: buildozer-${{ runner.os }}-${{ steps.get-date.outputs.date }}-${{ hashFiles('buildozer.spec') }}
@@ -36,7 +36,7 @@ jobs:
           buildozer_version: stable
 
       - name: Upload APK artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3  # Updated to latest version
         with:
           name: package
           path: bin/*.apk
