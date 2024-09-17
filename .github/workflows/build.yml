@@ -24,14 +24,22 @@ jobs:
           rm -rf /home/runner/.buildozer
           rm -rf /home/runner/work/main/main/.buildozer
 
-      - name: List Buildozer Directory
+      - name: List Buildozer Directory (Before Build)
         run: |
-          ls -al /home/runner/work/main/main/.buildozer/android/platform
+          echo "Listing parent directories:"
+          ls -al /home/runner/work/main/main/.buildozer/android
+          echo "Listing full path:"
+          ls -al /home/runner/work/main/main/.buildozer
 
       - name: Build with Buildozer
         run: |
           buildozer android clean
           buildozer android debug
+
+      - name: List Buildozer Directory (After Build)
+        run: |
+          echo "Listing directory after build:"
+          ls -al /home/runner/work/main/main/.buildozer/android/platform || echo "Directory does not exist"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
