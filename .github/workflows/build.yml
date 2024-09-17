@@ -47,4 +47,5 @@ jobs:
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
       with:
-       
+        name: build-output
+        path: .buildozer/android/platform/build-arm64-v8a_armeabi-v7a
